@@ -1,0 +1,11 @@
+celery[redis]
+dramatiq[redis,rabbitmq,watch]
+huey
+jupyter
+matplotlib
+pandas
+pyamqp
+redis[hiredis]
+rq
+seaborn
+tqdm

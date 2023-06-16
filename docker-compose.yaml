@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  app:
+    build: 
+      context: "."
+      dockerfile: "Dockerfile"
+    ports:
+       - 5123:5123
+    depends_on:
+      - rabbitmq
+      - redis
+    volumes:
+      - "${PWD}:/app/"
+
+  redis:
+    image: "redis:7.0.11"
+    command: 
+      - "redis-server"
+      - "--appendonly"
+      - "yes"
+      - "--maxmemory"
+      - "1gb"
+
+
+  rabbitmq:
+    image: "rabbitmq:3.12.0-management"
+    environment:
+      RABBITMQ_DEFAULT_USER: "user"
+      RABBITMQ_DEFAULT_PASS: "password"
+      RABBITMQ_DEFAULT_VHOST: "/"
+
